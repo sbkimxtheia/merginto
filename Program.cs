@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mime;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 
@@ -101,21 +102,51 @@ namespace merginto
                 WriteLine(@"         /:::/    /            \:::\    \                |::|   |                \::::::/    /            \:::\    \                  /:::/    /                                  \::::/    /", ConsoleColor.Cyan);       
                 WriteLine(@"        /:::/    /              \:::\____\               \::|   |                 \::::/    /              \:::\____\                /:::/    /                                    \::/____/", ConsoleColor.Cyan);        
                 WriteLine(@"        \::/    /                \::/    /                \:|   |                  \::/____/                \::/    /                \::/    /                                      ~~", ConsoleColor.Cyan);              
-                WriteLine(@"         \/____/                  \/____/                  \|___|                                            \/____/                  \/____/", ConsoleColor.Cyan);                                                       
-                                                                                                                                                                                                    
+                WriteLine(@"         \/____/                  \/____/                  \|___|                                            \/____/                  \/____/", ConsoleColor.Cyan);
+
+                string[] autoFolders = Directory.GetDirectories(System.Environment.CurrentDirectory);
+                bool _inputDefined = false, _outputDefined = false;
+                foreach (string folder in autoFolders)
+                {
+                    switch (Path.GetFileName(folder).ToUpper())
+                    {
+                        case "INPUT":
+                            _inputDefined = true;
+                            pathComicsDir = folder;
+                            break;
+                        case "OUTPUT":
+                            _outputDefined = true;
+                            pathOutputDir = folder;
+                            break;
+                    }
+                }
+                
                 WriteLine("\n언제든 종료하고 싶으시면 Ctrl+C를 입력해 주세요.",ConsoleColor.Magenta);
                 WriteLine("폴더 혹은 파일의 이름이 너무 길거나 (70문자 이상) 알 수 없는 문자가 포함된 경우 오류가 발생합니다!",ConsoleColor.Magenta);
+
+                if (_inputDefined && _outputDefined)
+                {
+                    WriteLine($"Input/Output Folder Auto-Detected!",ConsoleColor.Green);
+                    WriteLine($"입출력 폴더가 모두 자동 감지되었습니다!",ConsoleColor.Green);
+                }
+                else
+                {
+                    
+                    WriteLine($"입출력 폴더가 감지되지 않았습니다. 직접 설정해 주세요.",ConsoleColor.Cyan);
+                    WriteLine($"Cannot find input, output folder. Please Set Manually\n",ConsoleColor.Cyan);
+                    
+                    WriteLine("작품 폴더들이 들어있는 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
+                    WriteLine("작품 폴더들이 들어있는 상위 폴더를 선택해 주셔야 합니다!",ConsoleColor.Yellow);
+                    WriteLine("작품 폴더들이 들어있는 상위 폴더 안에는 작품 폴더들을 제외한 어떤 파일도 존재해서는 안됩니다!",ConsoleColor.Yellow);
+                    Write("Please Enter full path or Drag the folder containing the folders, including comic image files.\n>",ConsoleColor.Yellow);
+                    pathComicsDir = Console.ReadLine();
+                
+                    WriteLine("\n생성된 PDF 파일들이 들어갈 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
+                    Write("Please Enter full path or Drag the folder in which the PDF files created will be placed.\n>",ConsoleColor.Yellow);
+                    pathOutputDir = Console.ReadLine();
+                }
                 
                 
-                WriteLine("작품 폴더들이 들어있는 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
-                WriteLine("작품 폴더들이 들어있는 상위 폴더를 선택해 주셔야 합니다!",ConsoleColor.Yellow);
-                WriteLine("작품 폴더들이 들어있는 상위 폴더 안에는 작품 폴더들을 제외한 어떤 파일도 존재해서는 안됩니다!",ConsoleColor.Yellow);
-                Write("Please Enter full path or Drag the folder containing the folders, including comic image files.\n>",ConsoleColor.Yellow);
-                pathComicsDir = Console.ReadLine();
-                
-                WriteLine("\n생성된 PDF 파일들이 들어갈 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
-                Write("Please Enter full path or Drag the folder in which the PDF files created will be placed.\n>",ConsoleColor.Yellow);
-                pathOutputDir = Console.ReadLine();
                 
                 WriteLine("\n작업 중 이 창으로 로그를 출력할 때, 작품의 이름(폴더명)을 숨길까요? ( Y = 숨긴다, N = 숨기지 않는다 ) (입력 후 Enter)",ConsoleColor.Yellow);
                 Write("When printing the log in progress, should this program hide the title of the cartoon? ( y = hide title, n = show title(default) )\n>",ConsoleColor.Yellow);
@@ -336,8 +367,8 @@ namespace merginto
                 WriteLine("실패한 작업이 없습니다.");
                 WriteLine("No fails!");
             }
-                
 
+            Console.Read();
             return 0;
         }
 
