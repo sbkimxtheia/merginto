@@ -246,7 +246,7 @@ namespace merginto
                 WriteLine("   - 이후 폴더 이름을 변경하실 경우 해당 작품이 스킵될 수 있습니다!", ConsoleColor.Gray);
                 WriteLine("   - 만약 위의 작품들 중 이름이 너무 길거나 (70+) 알 수 없는 문자가 포함되었을 경우 수정 후 다시 실행해 주세요!", ConsoleColor.Gray);
                 WriteLine("   - PNG 파일로 이루어진 작품의 경우 시간이 오래 걸릴 수 있습니다!", ConsoleColor.Gray);
-                WriteLine("   - 작업 진척도를 올바르게 확인하시려면 현재 콘솔 창을 충분히 넓게 늘려주세요!", ConsoleColor.Gray);
+                WriteLine(ConsoleColor.Gray, "   - 작업 진척도를 올바르게 확인하시려면 현재 콘솔 창을 충분히 넓게 늘려주세요!");
                 Write("\n");
                 WriteLine($"Convert {totalComicsCount} cartoon image folders ({totalImagesCount} images) in a into PDF files and create them in this folder?",ConsoleColor.Yellow); 
                 
