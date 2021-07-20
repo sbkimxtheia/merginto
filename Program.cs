@@ -11,22 +11,27 @@ namespace merginto
     {
         public static int Main(string[] args)
         {
-            int argsCount = args.Length;
+            
 
-            string
+
+            const string appName = "merginto";
+            const string appTitle = "[ mergeinto Console ] ";
+            
+            
+            Console.WindowWidth = Console.LargestWindowWidth * 9 / 10;
+            Console.WindowHeight = Console.LargestWindowHeight * 4 / 10;
+            Console.Title = appName;
+            Console.WriteLine(appTitle);
+
+            #region Args Parsing
+            
+            string 
                 pathComicsDir = null,
                 pathOutputDir = null;
             bool hideTitle = false;
             bool dontAskAgain = false;
             
-            Console.WindowWidth = Console.LargestWindowWidth * 9 / 10;
-            Console.WindowHeight = Console.LargestWindowHeight * 4 / 10;
-            Console.Title = "Merginto";
-            
-            WriteLine("\n\n\t[ Mergeinto ]\n\n");
-
-            #region Args Parsing
-            
+            int argsCount = args.Length;
             if (argsCount >= 1) // Parse Args
             {
                 for (int argIndex = 0; argIndex < argsCount; argIndex += 1)
@@ -128,7 +133,9 @@ namespace merginto
                 
                 //WriteLine("\n언제든 종료하고 싶으시면 Ctrl+C를 입력해 주세요.",ConsoleColor.Magenta);
                 //WriteLine("폴더 혹은 파일의 이름이 너무 길거나 (70문자 이상) 알 수 없는 문자가 포함된 경우 오류가 발생합니다!",ConsoleColor.Magenta);
-
+                
+                Write("\n\n");
+                
                 if (_inputDefined)
                 {
                     WriteLine("작품 입력 폴더가 자동 감지되었습니다!",ConsoleColor.DarkGray);
@@ -139,11 +146,13 @@ namespace merginto
                 {
                     WriteLine("입력 폴더(\"Input\")가 감지되지 않았습니다. 직접 설정해 주세요.");
                     WriteLine("The input folder could not be found. Please Set Manually.");
-                    
+                    Write("\n");
                     WriteLine("작품 폴더들이 들어있는 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
                     Write("Please Enter full path or Drag the folder containing the folders, including comic image files.\n>",ConsoleColor.Yellow);
                     pathComicsDir = Console.ReadLine();
                 }
+                
+                Write("\n\n");
 
                 if (_outputDefined)
                 {
@@ -155,16 +164,16 @@ namespace merginto
                 {
                     WriteLine("출력 폴더(\"Output\")가 감지되지 않았습니다. 직접 설정해 주세요.");
                     WriteLine("The output folder could not be found. Please Set Manually.");
-                    
-                    WriteLine("\n생성된 PDF 파일들이 들어갈 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
+                    Write("\n");
+                    WriteLine("생성된 PDF 파일들이 들어갈 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
                     Write("Please Enter full path or Drag the folder in which the PDF files created will be placed.\nEx) E:\\WorkingSpace\\OutPut\n>",ConsoleColor.Yellow);
                     pathOutputDir = Console.ReadLine();
                 }
-
-                WriteLine("\n작업 중 이 창으로 로그를 출력할 때, 작품의 이름(폴더명)을 숨길까요? ( Y = 숨긴다, N = 숨기지 않는다 ) (입력 후 Enter)",ConsoleColor.Yellow);
+                Write("\n");
+                WriteLine("작업 중 이 창으로 로그를 출력할 때, 작품의 이름(폴더명)을 숨길까요? ( Y = 숨긴다, N = 숨기지 않는다 ) (입력 후 Enter)",ConsoleColor.Yellow);
                 Write("When printing the log in progress, should this program hide the title of the cartoon? ( y = hide title, n = show title(default) )\n>",ConsoleColor.Yellow);
-                string read = Console.ReadLine().ToUpper();
-                hideTitle = read == "Y" || read == "YE" || read == "YES";
+                ConsoleKeyInfo readKey = Console.ReadKey();
+                hideTitle = readKey.Key == ConsoleKey.Y;
             }
             
             #endregion
@@ -204,8 +213,8 @@ namespace merginto
             string[] failureList = null;
             int failureCount = 0;
             
-            WriteLine("작품 가져오는 중...", ConsoleColor.Gray);
-            WriteLine("Finding Comics...", ConsoleColor.Gray);
+            WriteLine("\n작품 가져오는 중...", ConsoleColor.Gray);
+            WriteLine("Finding Comics...\n", ConsoleColor.Gray);
             
             string[] comicFolders = Directory.GetDirectories(pathComicsDir); // Comics
             Array.Sort(comicFolders, new FileNameComparer());
@@ -227,22 +236,37 @@ namespace merginto
 
             if (!dontAskAgain)
             {
-                WriteLine($"{totalComicsCount} 개의 작품들을 (이미지 {totalImagesCount}개) PDF 파일로 변환하여 {pathOutputDir}에 생성할까요?", ConsoleColor.Yellow);
-                WriteLine($"Y를 입력하신 후에 작품 폴더의 이름을 변경하면 해당 작품 작업이 진행되지 않습니다!", ConsoleColor.Yellow);
-                WriteLine($"만약 위의 작품 목록 중 이름이 너무 길거나 알 수 없는 문자가 포함되었을 경우 이름 수정 후 다시 실행하여 주세요!", ConsoleColor.Yellow);
+                Write("\n");
+                WriteLine($"Output Path: {pathOutputDir}\n\tex) {pathOutputDir}\\WebToon1.pdf",ConsoleColor.Cyan);
+                Write("\n");
+                WriteLine($"{totalComicsCount} 개의 작품들을 (이미지 {totalImagesCount}개) {totalComicsCount}개의 PDF 파일로 변환하여 위의 경로에 생성할까요?", ConsoleColor.Yellow);
+                Write("\n");
+                WriteLine("   - y가 입력될 시 위의 모든 작업을 시작합니다! 창을 닫지 말고 켠 채로 유지해주세요!", ConsoleColor.Gray);
+                WriteLine("   - 작업을 중지하고 싶으시면 창을 닫거나 Ctrl+C를 입력해 주세요!", ConsoleColor.Gray);
+                WriteLine("   - 이후 폴더 이름을 변경하실 경우 해당 작품이 스킵될 수 있습니다!", ConsoleColor.Gray);
+                WriteLine("   - 만약 위의 작품들 중 이름이 너무 길거나 (70+) 알 수 없는 문자가 포함되었을 경우 수정 후 다시 실행해 주세요!", ConsoleColor.Gray);
+                WriteLine("   - PNG 파일로 이루어진 작품의 경우 시간이 오래 걸릴 수 있습니다!", ConsoleColor.Gray);
+                WriteLine("   - 작업 진척도를 올바르게 확인하시려면 현재 콘솔 창을 충분히 넓게 늘려주세요!", ConsoleColor.Gray);
+                Write("\n");
+                WriteLine($"Convert {totalComicsCount} cartoon image folders ({totalImagesCount} images) in a into PDF files and create them in this folder?",ConsoleColor.Yellow); 
                 
-                Write(
-                    $"Convert {totalComicsCount} cartoon image folders ({totalImagesCount} images) in a into PDF files and create them in {pathOutputDir} ?\n(Y/N): ",
-                    ConsoleColor.Yellow); 
-               
-                string answer = Console.ReadLine().ToUpper();
-                if (!(answer == "Y" || answer == "YES" || answer == "YE"))
+                Write($"(Y/N) : ",ConsoleColor.Yellow);
+
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key != ConsoleKey.Y)
                 {
-                    Write("Terminated!", ConsoleColor.Green);
-                    Write("사용자에 의해 종료됨!", ConsoleColor.Green);
+                    WriteLine("\nTerminated!", ConsoleColor.Green);
+                    WriteLine("사용자에 의해 종료됨!", ConsoleColor.Green);
+                    WriteLine("\nPress any ket to exit", ConsoleColor.Green);
+                    Console.ReadKey();
                     return 0;
                 }
             }
+            
+            
+            Write("\n작업을 시작합니다!\n",ConsoleColor.Yellow);
+            Console.Clear();
+            Console.CursorVisible = false;
 
             int __v = 0;
             int totalImagesIndex = 1; // Total Image Index
@@ -272,19 +296,9 @@ namespace merginto
                     failureList[failureCount++] = comicPath;
                     continue;
                 }
-
-                
-
-
-
-
-
-
                 float comicProcess = 100f * comicProcessingIndex / totalComicsCount;
 
-                /////////////
-                // Images Iterator
-                ////////////
+                
                 
                 string[] images = Directory.GetFiles(comicPath);
                 Array.Sort(images, new FileNameComparer());
@@ -335,7 +349,7 @@ namespace merginto
                     lastStatus = status;
 
                     Console.Write("\r" + status);
-                    Console.Title = $"{ving} Processing - [{totalImagesIndex}/{totalImagesCount}] : {totalImageProcess:F2}%";
+                    Console.Title = $"{ving} Merginto : Processing - [{totalImagesIndex}/{totalImagesCount}] : {totalImageProcess:F2}%";
 
                     
 
@@ -363,10 +377,10 @@ namespace merginto
                 "처리한 작업: 작품 {0}개, 이미지 {1}개\n" +
                 "Task Finished: {0} Comics, {1} Images\n",
                 totalComicsCount, totalImagesIndex
-                ));
+                ),ConsoleColor.Yellow);
             
-            WriteLine("모든 작업 완료!");
-            WriteLine("Totally Finished!!!");
+            WriteLine("모든 작업이 완료되었습니다!",ConsoleColor.Cyan);
+            WriteLine("Totally Finished!!!",ConsoleColor.Cyan);
 
             if (failureList != null)
             {
@@ -381,7 +395,7 @@ namespace merginto
                 WriteLine("No fails!");
             }
 
-            Console.Read();
+            Console.ReadKey();
             return 0;
         }
 
