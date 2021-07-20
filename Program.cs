@@ -217,6 +217,17 @@ namespace merginto
             WriteLine("Finding Comics...\n", ConsoleColor.Gray);
             
             string[] comicFolders = Directory.GetDirectories(pathComicsDir); // Comics
+
+            if (comicFolders.Length <= 0)
+            {
+                WriteLine("ERROR: 입력 폴더 내에 작품이 발견되지 않았습니다.", ConsoleColor.Red);
+                Console.ReadKey();
+                return 0;
+            }
+            
+            
+            
+            
             Array.Sort(comicFolders, new FileNameComparer());
 
             int totalComicsCount = comicFolders.Length; // Comics Count
