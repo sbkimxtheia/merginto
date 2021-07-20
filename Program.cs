@@ -22,6 +22,8 @@ namespace merginto
             Console.WindowWidth = Console.LargestWindowWidth * 9 / 10;
             Console.WindowHeight = Console.LargestWindowHeight * 4 / 10;
             Console.Title = "Merginto";
+            
+            WriteLine("\n\n\t[ Mergeinto ]\n\n");
 
             #region Args Parsing
             
@@ -82,27 +84,27 @@ namespace merginto
             else // Receive Input
             {
                 
-                WriteLine(@"          _____                    _____                    _____                    _____                    _____                    _____                _____                   _______", ConsoleColor.Cyan);         
-                WriteLine(@"         /\    \                  /\    \                  /\    \                  /\    \                  /\    \                  /\    \              /\    \                 /::\    \", ConsoleColor.Cyan);        
-                WriteLine(@"        /::\____\                /::\    \                /::\    \                /::\    \                /::\    \                /::\____\            /::\    \               /::::\    \", ConsoleColor.Cyan);       
-                WriteLine(@"       /::::|   |               /::::\    \              /::::\    \              /::::\    \               \:::\    \              /::::|   |            \:::\    \             /::::::\    \", ConsoleColor.Cyan);      
-                WriteLine(@"      /:::::|   |              /::::::\    \            /::::::\    \            /::::::\    \               \:::\    \            /:::::|   |             \:::\    \           /::::::::\    \", ConsoleColor.Cyan);     
-                WriteLine(@"     /::::::|   |             /:::/\:::\    \          /:::/\:::\    \          /:::/\:::\    \               \:::\    \          /::::::|   |              \:::\    \         /:::/~~\:::\    \", ConsoleColor.Cyan);    
-                WriteLine(@"    /:::/|::|   |            /:::/__\:::\    \        /:::/__\:::\    \        /:::/  \:::\    \               \:::\    \        /:::/|::|   |               \:::\    \       /:::/    \:::\    \", ConsoleColor.Cyan);   
-                WriteLine(@"   /:::/ |::|   |           /::::\   \:::\    \      /::::\   \:::\    \      /:::/    \:::\    \              /::::\    \      /:::/ |::|   |               /::::\    \     /:::/    / \:::\    \", ConsoleColor.Cyan);  
-                WriteLine(@"  /:::/  |::|___|______    /::::::\   \:::\    \    /::::::\   \:::\    \    /:::/    / \:::\    \    ____    /::::::\    \    /:::/  |::|   | _____        /::::::\    \   /:::/____/   \:::\____\", ConsoleColor.Cyan); 
-                WriteLine(@" /:::/   |::::::::\    \  /:::/\:::\   \:::\    \  /:::/\:::\   \:::\____\  /:::/    /   \:::\ ___\  /\   \  /:::/\:::\    \  /:::/   |::|   |/\    \      /:::/\:::\    \ |:::|    |     |:::|    |", ConsoleColor.Cyan);
-                WriteLine(@"/:::/    |:::::::::\____\/:::/__\:::\   \:::\____\/:::/  \:::\   \:::|    |/:::/____/  ___\:::|    |/::\   \/:::/  \:::\____\/:: /    |::|   /::\____\    /:::/  \:::\____\|:::|____|     |:::|    |", ConsoleColor.Cyan);
-                WriteLine(@"\::/    / ~~~~~/:::/    /\:::\   \:::\   \::/    /\::/   |::::\  /:::|____|\:::\    \ /\  /:::|____|\:::\  /:::/    \::/    /\::/    /|::|  /:::/    /   /:::/    \::/    / \:::\    \   /:::/    /", ConsoleColor.Cyan); 
-                WriteLine(@" \/____/      /:::/    /  \:::\   \:::\   \/____/  \/____|:::::\/:::/    /  \:::\    /::\ \::/    /  \:::\/:::/    / \/____/  \/____/ |::| /:::/    /   /:::/    / \/____/   \:::\    \ /:::/    /", ConsoleColor.Cyan);  
-                WriteLine(@"             /:::/    /    \:::\   \:::\    \            |:::::::::/    /    \:::\   \:::\ \/____/    \::::::/    /                   |::|/:::/    /   /:::/    /             \:::\    /:::/    /", ConsoleColor.Cyan);   
-                WriteLine(@"            /:::/    /      \:::\   \:::\____\           |::|\::::/    /      \:::\   \:::\____\       \::::/____/                    |::::::/    /   /:::/    /               \:::\__/:::/    /", ConsoleColor.Cyan);    
-                WriteLine(@"           /:::/    /        \:::\   \::/    /           |::| \::/____/        \:::\  /:::/    /        \:::\    \                    |:::::/    /    \::/    /                 \::::::::/    /", ConsoleColor.Cyan);     
-                WriteLine(@"          /:::/    /          \:::\   \/____/            |::|  ~|               \:::\/:::/    /          \:::\    \                   |::::/    /      \/____/                   \::::::/    /", ConsoleColor.Cyan);      
-                WriteLine(@"         /:::/    /            \:::\    \                |::|   |                \::::::/    /            \:::\    \                  /:::/    /                                  \::::/    /", ConsoleColor.Cyan);       
-                WriteLine(@"        /:::/    /              \:::\____\               \::|   |                 \::::/    /              \:::\____\                /:::/    /                                    \::/____/", ConsoleColor.Cyan);        
-                WriteLine(@"        \::/    /                \::/    /                \:|   |                  \::/____/                \::/    /                \::/    /                                      ~~", ConsoleColor.Cyan);              
-                WriteLine(@"         \/____/                  \/____/                  \|___|                                            \/____/                  \/____/", ConsoleColor.Cyan);
+                //WriteLine(@"          _____                    _____                    _____                    _____                    _____                    _____                _____                   _______", ConsoleColor.Cyan);         
+                //WriteLine(@"         /\    \                  /\    \                  /\    \                  /\    \                  /\    \                  /\    \              /\    \                 /::\    \", ConsoleColor.Cyan);        
+                //WriteLine(@"        /::\____\                /::\    \                /::\    \                /::\    \                /::\    \                /::\____\            /::\    \               /::::\    \", ConsoleColor.Cyan);       
+                //WriteLine(@"       /::::|   |               /::::\    \              /::::\    \              /::::\    \               \:::\    \              /::::|   |            \:::\    \             /::::::\    \", ConsoleColor.Cyan);      
+                //WriteLine(@"      /:::::|   |              /::::::\    \            /::::::\    \            /::::::\    \               \:::\    \            /:::::|   |             \:::\    \           /::::::::\    \", ConsoleColor.Cyan);     
+                //WriteLine(@"     /::::::|   |             /:::/\:::\    \          /:::/\:::\    \          /:::/\:::\    \               \:::\    \          /::::::|   |              \:::\    \         /:::/~~\:::\    \", ConsoleColor.Cyan);    
+                //WriteLine(@"    /:::/|::|   |            /:::/__\:::\    \        /:::/__\:::\    \        /:::/  \:::\    \               \:::\    \        /:::/|::|   |               \:::\    \       /:::/    \:::\    \", ConsoleColor.Cyan);   
+                //WriteLine(@"   /:::/ |::|   |           /::::\   \:::\    \      /::::\   \:::\    \      /:::/    \:::\    \              /::::\    \      /:::/ |::|   |               /::::\    \     /:::/    / \:::\    \", ConsoleColor.Cyan);  
+                //WriteLine(@"  /:::/  |::|___|______    /::::::\   \:::\    \    /::::::\   \:::\    \    /:::/    / \:::\    \    ____    /::::::\    \    /:::/  |::|   | _____        /::::::\    \   /:::/____/   \:::\____\", ConsoleColor.Cyan); 
+                //WriteLine(@" /:::/   |::::::::\    \  /:::/\:::\   \:::\    \  /:::/\:::\   \:::\____\  /:::/    /   \:::\ ___\  /\   \  /:::/\:::\    \  /:::/   |::|   |/\    \      /:::/\:::\    \ |:::|    |     |:::|    |", ConsoleColor.Cyan);
+                //WriteLine(@"/:::/    |:::::::::\____\/:::/__\:::\   \:::\____\/:::/  \:::\   \:::|    |/:::/____/  ___\:::|    |/::\   \/:::/  \:::\____\/:: /    |::|   /::\____\    /:::/  \:::\____\|:::|____|     |:::|    |", ConsoleColor.Cyan);
+                //WriteLine(@"\::/    / ~~~~~/:::/    /\:::\   \:::\   \::/    /\::/   |::::\  /:::|____|\:::\    \ /\  /:::|____|\:::\  /:::/    \::/    /\::/    /|::|  /:::/    /   /:::/    \::/    / \:::\    \   /:::/    /", ConsoleColor.Cyan); 
+                //WriteLine(@" \/____/      /:::/    /  \:::\   \:::\   \/____/  \/____|:::::\/:::/    /  \:::\    /::\ \::/    /  \:::\/:::/    / \/____/  \/____/ |::| /:::/    /   /:::/    / \/____/   \:::\    \ /:::/    /", ConsoleColor.Cyan);  
+                //WriteLine(@"             /:::/    /    \:::\   \:::\    \            |:::::::::/    /    \:::\   \:::\ \/____/    \::::::/    /                   |::|/:::/    /   /:::/    /             \:::\    /:::/    /", ConsoleColor.Cyan);   
+                //WriteLine(@"            /:::/    /      \:::\   \:::\____\           |::|\::::/    /      \:::\   \:::\____\       \::::/____/                    |::::::/    /   /:::/    /               \:::\__/:::/    /", ConsoleColor.Cyan);    
+                //WriteLine(@"           /:::/    /        \:::\   \::/    /           |::| \::/____/        \:::\  /:::/    /        \:::\    \                    |:::::/    /    \::/    /                 \::::::::/    /", ConsoleColor.Cyan);     
+                //WriteLine(@"          /:::/    /          \:::\   \/____/            |::|  ~|               \:::\/:::/    /          \:::\    \                   |::::/    /      \/____/                   \::::::/    /", ConsoleColor.Cyan);      
+                //WriteLine(@"         /:::/    /            \:::\    \                |::|   |                \::::::/    /            \:::\    \                  /:::/    /                                  \::::/    /", ConsoleColor.Cyan);       
+                //WriteLine(@"        /:::/    /              \:::\____\               \::|   |                 \::::/    /              \:::\____\                /:::/    /                                    \::/____/", ConsoleColor.Cyan);        
+                //WriteLine(@"        \::/    /                \::/    /                \:|   |                  \::/____/                \::/    /                \::/    /                                      ~~", ConsoleColor.Cyan);              
+                //WriteLine(@"         \/____/                  \/____/                  \|___|                                            \/____/                  \/____/", ConsoleColor.Cyan);
 
                 string[] autoFolders = Directory.GetDirectories(System.Environment.CurrentDirectory);
                 bool _inputDefined = false, _outputDefined = false;
@@ -111,43 +113,54 @@ namespace merginto
                     switch (Path.GetFileName(folder).ToUpper())
                     {
                         case "INPUT":
+                            case "IN":
                             _inputDefined = true;
                             pathComicsDir = folder;
                             break;
+                        
                         case "OUTPUT":
+                            case "OUT":
                             _outputDefined = true;
                             pathOutputDir = folder;
                             break;
                     }
                 }
                 
-                WriteLine("\n언제든 종료하고 싶으시면 Ctrl+C를 입력해 주세요.",ConsoleColor.Magenta);
-                WriteLine("폴더 혹은 파일의 이름이 너무 길거나 (70문자 이상) 알 수 없는 문자가 포함된 경우 오류가 발생합니다!",ConsoleColor.Magenta);
+                //WriteLine("\n언제든 종료하고 싶으시면 Ctrl+C를 입력해 주세요.",ConsoleColor.Magenta);
+                //WriteLine("폴더 혹은 파일의 이름이 너무 길거나 (70문자 이상) 알 수 없는 문자가 포함된 경우 오류가 발생합니다!",ConsoleColor.Magenta);
 
-                if (_inputDefined && _outputDefined)
+                if (_inputDefined)
                 {
-                    WriteLine($"Input/Output Folder Auto-Detected!",ConsoleColor.Green);
-                    WriteLine($"입출력 폴더가 모두 자동 감지되었습니다!",ConsoleColor.Green);
+                    WriteLine("작품 입력 폴더가 자동 감지되었습니다!",ConsoleColor.DarkGray);
+                    WriteLine("Input Folder Auto-Detected!",ConsoleColor.DarkGray);
+                    WriteLine($"IN: {pathComicsDir}",ConsoleColor.DarkGray);
                 }
                 else
                 {
-                    
-                    WriteLine($"입출력 폴더가 감지되지 않았습니다. 직접 설정해 주세요.",ConsoleColor.Cyan);
-                    WriteLine($"Cannot find input, output folder. Please Set Manually\n",ConsoleColor.Cyan);
+                    WriteLine("입력 폴더(\"Input\")가 감지되지 않았습니다. 직접 설정해 주세요.");
+                    WriteLine("The input folder could not be found. Please Set Manually.");
                     
                     WriteLine("작품 폴더들이 들어있는 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
-                    WriteLine("작품 폴더들이 들어있는 상위 폴더를 선택해 주셔야 합니다!",ConsoleColor.Yellow);
-                    WriteLine("작품 폴더들이 들어있는 상위 폴더 안에는 작품 폴더들을 제외한 어떤 파일도 존재해서는 안됩니다!",ConsoleColor.Yellow);
                     Write("Please Enter full path or Drag the folder containing the folders, including comic image files.\n>",ConsoleColor.Yellow);
                     pathComicsDir = Console.ReadLine();
-                
+                }
+
+                if (_outputDefined)
+                {
+                    WriteLine("PDF 출력 폴더가 자동 감지되었습니다!",ConsoleColor.DarkGray);
+                    WriteLine("Output Folder Auto-Detected!",ConsoleColor.DarkGray);
+                    WriteLine($"OUT: {pathOutputDir}",ConsoleColor.DarkGray);
+                }
+                else
+                {
+                    WriteLine("출력 폴더(\"Output\")가 감지되지 않았습니다. 직접 설정해 주세요.");
+                    WriteLine("The output folder could not be found. Please Set Manually.");
+                    
                     WriteLine("\n생성된 PDF 파일들이 들어갈 폴더의 경로를 입력하거나 이 창으로 드래그하세요. (입력 후 Enter)",ConsoleColor.Yellow);
-                    Write("Please Enter full path or Drag the folder in which the PDF files created will be placed.\n>",ConsoleColor.Yellow);
+                    Write("Please Enter full path or Drag the folder in which the PDF files created will be placed.\nEx) E:\\WorkingSpace\\OutPut\n>",ConsoleColor.Yellow);
                     pathOutputDir = Console.ReadLine();
                 }
-                
-                
-                
+
                 WriteLine("\n작업 중 이 창으로 로그를 출력할 때, 작품의 이름(폴더명)을 숨길까요? ( Y = 숨긴다, N = 숨기지 않는다 ) (입력 후 Enter)",ConsoleColor.Yellow);
                 Write("When printing the log in progress, should this program hide the title of the cartoon? ( y = hide title, n = show title(default) )\n>",ConsoleColor.Yellow);
                 string read = Console.ReadLine().ToUpper();
@@ -311,7 +324,7 @@ namespace merginto
                     char ving = vingle();
                     string status = String.Format(
 
-                        " {13} >>> {9} ({10}x{11}) => Page {12} ... COMIC {3}% [{4}/{5}] : PAGE {6}% [{7}/{8}] / TOTAL {0}% [{1}/{2}]",
+                        " {13} >>> {9} ({10}x{11}) => Page {12} ... COMIC {3}% [{4}/{5}] : PAGE {6}% [{7}/{8}] / TOTAL {0}% [{1}/{2}]        ",
 
                         totalImageProcess, totalImagesIndex, totalImagesCount,
                         comicProcess, comicProcessingIndex, totalComicsCount,
@@ -347,7 +360,7 @@ namespace merginto
             }
             
             WriteLine(string.Format(
-                "처리한 작업: 작품 {0}개, 이미지 {1}개" +
+                "처리한 작업: 작품 {0}개, 이미지 {1}개\n" +
                 "Task Finished: {0} Comics, {1} Images\n",
                 totalComicsCount, totalImagesIndex
                 ));
@@ -389,7 +402,7 @@ namespace merginto
         private static void HelpPrint()
         {
             Write("\n\nExample: ", ConsoleColor.Yellow);
-            WriteLine("D:\\ITP.exe D:\\Comics D:\\CreatedPdfs");
+            WriteLine("D:\\ITP.exe /i D:\\Comics /o D:\\CreatedPdfs /hidetitle");
 
             Write("\nAvailable Switches\n", ConsoleColor.Yellow);
 
