@@ -341,7 +341,7 @@ namespace merginto
                             break;
                         
                         default:
-                            WriteLine($"{comicProcessingIndex}번째 작품 {comicName}의 {page}번째 파일을 처리할 수 없습니다!",ConsoleColor.Red);
+                            WriteLine($"\n{comicProcessingIndex}번째 작품 {comicName}의 {page}번째 파일({imageName})을 처리할 수 없습니다!",ConsoleColor.Red);
                             WriteLine($"Cannot Process {page}th file of {comicName} ({comicProcessingIndex}th comic)!",ConsoleColor.Red);
                             WriteLine("이 문제는 주로 작품 폴더에 이미지 파일이 아닌 다른 종류의 파일이 있을 때 발생합니다!",ConsoleColor.Red);
                             WriteLine("해당 페이지 건너뛰는 중...",ConsoleColor.Yellow);
