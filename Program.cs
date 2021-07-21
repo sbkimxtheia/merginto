@@ -112,14 +112,14 @@ namespace merginto
                 //WriteLine(@"         \/____/                  \/____/                  \|___|                                            \/____/                  \/____/", ConsoleColor.Cyan);
 
                 string[] autoFolders = Directory.GetDirectories(System.Environment.CurrentDirectory);
-                bool _inputDefined = false, _outputDefined = false;
+                bool inputDefined = false, _outputDefined = false;
                 foreach (string folder in autoFolders)
                 {
                     switch (Path.GetFileName(folder).ToUpper())
                     {
                         case "INPUT":
                             case "IN":
-                            _inputDefined = true;
+                            inputDefined = true;
                             pathComicsDir = folder;
                             break;
                         
@@ -136,7 +136,7 @@ namespace merginto
                 
                 Write("\n\n");
                 
-                if (_inputDefined)
+                if (inputDefined)
                 {
                     WriteLine("작품 입력 폴더가 자동 감지되었습니다!",ConsoleColor.DarkGray);
                     WriteLine("Input Folder Auto-Detected!",ConsoleColor.DarkGray);
@@ -171,7 +171,7 @@ namespace merginto
                 }
                 Write("\n");
                 WriteLine("작업 중 이 창으로 로그를 출력할 때, 작품의 이름(폴더명)을 숨길까요? ( Y = 숨긴다, N = 숨기지 않는다 ) (입력 후 Enter)",ConsoleColor.Yellow);
-                Write("When printing the log in progress, should this program hide the title of the cartoon? ( y = hide title, n = show title(default) )\n>",ConsoleColor.Yellow);
+                Write("When printing the log in progress, should this program hide the title of the cartoon? ( y = hide title, n = show title(default) )\n(Y/N) : ",ConsoleColor.Yellow);
                 ConsoleKeyInfo readKey = Console.ReadKey();
                 hideTitle = readKey.Key == ConsoleKey.Y;
             }
@@ -187,16 +187,17 @@ namespace merginto
             }
             
             bool
-                _pathComicsDirExists = Directory.Exists(pathComicsDir),
+                pathComicsDirExists = Directory.Exists(pathComicsDir),
                 _pathOutputDirExists = Directory.Exists(pathOutputDir);
 
-            if (!(_pathComicsDirExists && _pathOutputDirExists)) // Input folder or Output Folder not exists
+            if (!(pathComicsDirExists && _pathOutputDirExists)) // Input folder or Output Folder not exists
             {
+                Console.Beep();
                 WriteLine("ERROR: 작품 폴더들이 들어있는 폴더 혹은 출력 폴더가 존재하지 않습니다!", ConsoleColor.Red);
                 WriteLine("다른 경로를 입력하거나 폴더를 생성한 후 다시 시도해 주세요.", ConsoleColor.Red);
                 WriteLine("ERROR: Path not exists!", ConsoleColor.Red);
-                WriteLine($"Input Folder {pathComicsDir} ... {_pathComicsDirExists}",
-                    _pathComicsDirExists ? ConsoleColor.Green : ConsoleColor.Red);
+                WriteLine($"Input Folder {pathComicsDir} ... {pathComicsDirExists}",
+                    pathComicsDirExists ? ConsoleColor.Green : ConsoleColor.Red);
                 WriteLine($"Output Folder {pathOutputDir} ... {_pathOutputDirExists}",
                     _pathOutputDirExists ? ConsoleColor.Green : ConsoleColor.Red);
                 Environment.Exit(0);
@@ -210,8 +211,7 @@ namespace merginto
 
 
 
-            string[] failureList = null;
-            int failureCount = 0;
+            
             
             WriteLine("\n작품 가져오는 중...", ConsoleColor.Gray);
             WriteLine("Finding Comics...\n", ConsoleColor.Gray);
@@ -220,11 +220,14 @@ namespace merginto
 
             if (comicFolders.Length <= 0)
             {
+                Console.Beep();
                 WriteLine("ERROR: 입력 폴더 내에 작품이 발견되지 않았습니다.", ConsoleColor.Red);
                 Console.ReadKey();
                 return 0;
             }
-            
+
+            string[] failureList = new string[comicFolders.Length];
+            int failureCount = 0;
             
             
             
@@ -300,11 +303,12 @@ namespace merginto
 
                 if (!(Directory.Exists(comicPath) && Directory.Exists(pathOutputDir)))
                 {
+                    Console.Beep();
                     WriteLine($"Folder {comicPath} or {pathOutputDir} not exists!", ConsoleColor.Red);
                     WriteLine($"작품들 폴더 {comicPath} 혹은 출력 폴더 {pathOutputDir}가 존재하지 않습니다!", ConsoleColor.Red);
                     WriteLine("Skipping...", ConsoleColor.Yellow);
                     WriteLine("해당 작품 건너뛰는 중 ...", ConsoleColor.Yellow);
-                    failureList[failureCount++] = comicPath;
+                    failureList[failureCount++] = comicName;
                     continue;
                 }
                 float comicProcess = 100f * comicProcessingIndex / totalComicsCount;
@@ -330,7 +334,8 @@ namespace merginto
                     string imagePath = images[pageIndex];
                     string imageName = Path.GetFileName(imagePath);
 
-                    switch (Path.GetExtension(imagePath).ToUpper())
+                    string imageExtension = Path.GetExtension(imagePath).ToUpper();
+                    switch (imageExtension)
                     {
                         case ".PNG":
                         case ".JPG":
@@ -341,10 +346,15 @@ namespace merginto
                             break;
                         
                         default:
-                            WriteLine($"\n{comicProcessingIndex}번째 작품 {comicName}의 {page}번째 파일({imageName})을 처리할 수 없습니다!",ConsoleColor.Red);
+                            Console.Beep();
+                            failureList[failureCount++] = $"\n{comicProcessingIndex}번째 작품 {comicName}의 {page}번째 파일 ({imageExtension})";
+                            Write("\n");
+                            WriteLine($"\n{comicProcessingIndex}번째 작품 {comicName}의 {page}번째 파일{(hideTitle? string.Empty : $"({imagePath})")}을 처리할 수 없습니다!",ConsoleColor.Red);
                             WriteLine($"Cannot Process {page}th file of {comicName} ({comicProcessingIndex}th comic)!",ConsoleColor.Red);
-                            WriteLine("이 문제는 주로 작품 폴더에 이미지 파일이 아닌 다른 종류의 파일이 있을 때 발생합니다!",ConsoleColor.Red);
-                            WriteLine("해당 페이지 건너뛰는 중...",ConsoleColor.Yellow);
+                            WriteLine($"파일 확장자 {imageExtension}는 지원되지 않습니다.",ConsoleColor.Red);
+                            Write("\n");
+                            WriteLine("오류 페이지 건너뛰는 중...",ConsoleColor.Yellow);
+                            Write("\n");
                             continue;
                             break;
                                 
@@ -403,7 +413,8 @@ namespace merginto
                     return _arr[__v];
                 }
             }
-            
+            Console.Beep();
+            Write("\n");
             WriteLine(string.Format(
                 "처리한 작업: 작품 {0}개, 이미지 {1}개\n" +
                 "Task Finished: {0} Comics, {1} Images\n",
