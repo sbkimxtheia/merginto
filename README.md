@@ -8,7 +8,8 @@
 ## About
 
 
-make single pdf file with merging images of webtoon, manga or etc.
+make single pdf file with merging images of webtoon, manga or etc.   
+여러 장의 이미지를 하나의 PDF 파일로 병합합니다.
 
 
 
