@@ -1,3 +1,4 @@
+<h1 align="center">merginto - Merge Images into Single PDF File.</h1>   
 
 <img src="https://github.com/SBkimXTHEIA/merginto/blob/a1d206f971e490a65b429b4c17cbc4c481139951/img/title.png"/>
 
