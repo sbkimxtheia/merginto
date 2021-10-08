@@ -312,8 +312,6 @@ namespace merginto
                     continue;
                 }
                 float comicProcess = 100f * comicProcessingIndex / totalComicsCount;
-
-                
                 
                 string[] images = Directory.GetFiles(comicPath);
                 Array.Sort(images, new FileNameComparer());
@@ -426,9 +424,10 @@ namespace merginto
 
             if (failureList != null)
             {
+                WriteLine("실패 목록:\n");
                 foreach (var fail in failureList)
                 {
-                    WriteLine(fail);
+                    WriteLine($"F: {fail}");
                 }
             }
             else
